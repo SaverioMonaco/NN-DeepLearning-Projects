@@ -1,0 +1,17 @@
+--2021-12-26 11:43:04--  https://gitlab.dei.unipd.it/michieli/nnld-2021-22-lab-resources/-/raw/main/homework1/
+Resolving gitlab.dei.unipd.it (gitlab.dei.unipd.it)... 147.162.2.85
+Connecting to gitlab.dei.unipd.it (gitlab.dei.unipd.it)|147.162.2.85|:443... failed: Connection timed out.
+Retrying.
+
+--2021-12-26 11:45:16--  (try: 2)  https://gitlab.dei.unipd.it/michieli/nnld-2021-22-lab-resources/-/raw/main/homework1/
+Connecting to gitlab.dei.unipd.it (gitlab.dei.unipd.it)|147.162.2.85|:443... failed: Connection timed out.
+Retrying.
+
+--2021-12-26 11:47:28--  (try: 3)  https://gitlab.dei.unipd.it/michieli/nnld-2021-22-lab-resources/-/raw/main/homework1/
+Connecting to gitlab.dei.unipd.it (gitlab.dei.unipd.it)|147.162.2.85|:443... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2021-12-26 11:47:28 ERROR 404: Not Found.
+
+--2021-12-26 11:47:28--  http://train_data.csv/
+Resolving train_data.csv (train_data.csv)... failed: Name or service not known.
+wget: unable to resolve host address ‘train_data.csv’
