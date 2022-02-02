@@ -11,6 +11,10 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{svg}
+\svgsetup{inkscapeexe="C:/Program Files/Inkscape/bin/inkscape.exe"}
+
+\usepackage{biblatex}
+\addbibresource{bib1.bib}
 
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
@@ -22,8 +26,51 @@
 \newcommand{\esepline}{\noindent\makebox[\linewidth]{\rule{7.5cm}{0.5pt}}}
 
 \author{Monaco Saverio - 2012264 \sepline \\Neural Networks and Deep Learning - Professor: A. Testolin}
-\title{{\normalsize\textsc{Università degli studi di Padova}}\vspace{-.5cm} \\ \sepline\\ \textbf{Homework \#1\\ Supervised Deep Learning}}
+\title{{\normalsize\textsc{Università degli studi di Padova}}\vspace{-.5cm} \\ \sepline\\ \textbf{Homework \#1
+\\ Supervised Deep Learning}}
 
 \begin{document}
 	\maketitle
+	\begin{abstract} As for the first homework, the main models of Supervised Deep Learning are investigated. For the regression task, it is needed to effectively approximate a noisy unknown\\ 1-dimensional function. The classification task instead consists in building a Convolutional Neural Network for the FashionMNIST Dataset.\\
+	For both tasks, more advanced techniques are further explored and compared.
+	\end{abstract}
+			%  present the simulation results
+			\section{\textbf{Regression task}}
+			% Describe quickly the task of regression
+			The task of Regression in a Neural Network framework consist in approximating a scalar function:
+			$$f:\mathbb{R}\to\mathbb{R}$$
+			through the use of a Network. Usually, the deeper the network is, the more complex patterns and behaviours of the target function it can grasp, however it might also encounter overfitting.\\
+			 For the current exercise, training and testing points are generated according to a theoretical and unknown function, plus some noise:
+			$$\hat{y}=f(x) + noise$$
+			
+			The data for the task is the following:\vspace*{-.5cm}
+			\begin{figure}[h]
+				\centering
+				\includesvg[width=0.95\linewidth]{../imgs/regression/fulldataset}
+			\end{figure}
+			
+			\subsection{\textbf{Methods}}
+			% describe your model architectures and hyperparameters
+			\subsection{\textbf{Results}}
+			
+	\section{\textbf{Classification task}}
+		% Describe quickly the task of classification
+		The objective of classification is to obtain a \textit{rule} that outputs the most probable label (belonging to discrete space $\mathcal{L}$) starting from a set of parameters $\mathcal{X}$.\\
+		Solely for Classification, it is possible to define a particular metric that intuitively tells how well the model is performing:
+		$$Accuracy: \frac{\text{\#samples} - \text{misclassified\_samples}}{\text{\#samples}}$$
+		\subsection{\textbf{Methods}}
+			% describe your model architectures and hyperparameters
+		\subsection{\textbf{Results}}
+			%  present the simulation results
+			
+	\section{\textbf{Conclusions}}
+	%\printbibliography
+	
+	\newpage
+	a
+	\newpage
+	\onecolumn
+	\section{\textbf{Appendix}}
+		
+	
 \end{document}

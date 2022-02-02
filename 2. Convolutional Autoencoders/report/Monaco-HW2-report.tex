@@ -12,6 +12,9 @@
 \usepackage{graphicx}
 \usepackage{svg}
 
+\usepackage{biblatex}
+\addbibresource{bib2.bib}
+
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
@@ -27,4 +30,31 @@
 
 \begin{document}
 	\maketitle
+	\begin{abstract} As for the second homework, the main models of Unupervised Deep Learning are investigated on the FashionMNIST dataset.\\ 
+	Firstly, an Autoencoder has been developed and its Encoded Space has been inspected. Later, the trained Autoencoder has been fine tuned aiming for a working Classifier.\\
+	As for the last model, a Generative Adversarial Network has been implemented for the task of generating new samples.\\
+	All these models were properly tuned using the Hyperparameter optimization library Optuna.
+	\end{abstract}
+
+	\section{\textbf{Autoencoders}}
+	% explain autoencoders
+		\subsection{\textbf{Methods}}
+		% describe your model architectures and hyperparameters
+		\subsection{\textbf{Results}}
+		%  present the simulation results
+		
+	\section{\textbf{Generative Adversarial Networks}}
+	% explain gans
+		\subsection{\textbf{Methods}}
+		% describe your model architectures and hyperparameters
+		\subsection{\textbf{Results}}
+		%  present the simulation results
+		
+	\section{\textbf{Conclusions}}
+	
+	\newpage
+	a
+	\newpage
+	\onecolumn
+	\section{\textbf{Appendix}}
 \end{document}
