@@ -11,8 +11,8 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{svg}
-\usepackage{minted}
-%\svgsetup{inkscapeexe="C:/Program Files/Inkscape/bin/inkscape.exe"}
+%\usepackage{minted}
+\svgsetup{inkscapeexe="C:/Program Files/Inkscape/bin/inkscape.exe"}
 
 \usepackage{biblatex}
 \addbibresource{bib1.bib}
@@ -34,24 +34,24 @@
 
 \begin{document}
 	\maketitle
-	\begin{abstract} As for the first homework, the main models of Supervised Deep Learning are investigated. For the regression task, it is needed to effectively approximate a noisy unknown\\ 1-dimensional function. The classification task instead consists in building a Convolutional Neural Network for the FashionMNIST Dataset.\\
+	\begin{abstract} As for the first homework, the tasks of classification and regression in a Supervised Deep Learning framework are investigated.\\ For regression, it is needed to effectively approximate a noisy unknown 1-dimensional function.\\ The classification task instead consists in building a Convolutional Neural Network for the FashionMNIST Dataset.\\
 	For both tasks, more advanced techniques are further explored and compared.
 	\end{abstract}
 			%  present the simulation results
 			\section{\textbf{Regression task}}
 			% Describe quickly the task of regression
-			The task of Regression in a Neural Network framework consist in approximating a scalar function:
-			$$f:\mathbb{R}\to\mathbb{R}$$
-			through the use of a Network. Usually, the deeper the network is, the more complex patterns and behaviours of the target function it can grasp, however it might also encounter overfitting.\\
-			 For the current exercise, training and testing points are generated according to a theoretical and unknown function, plus some noise:
-			$$\hat{y}=f(x) + noise$$
+			The task of Regression in a Neural Network framework consist in approximating a scalar function:\vspace*{-.3cm}
+			$$f:\mathbb{R}\to\mathbb{R}$$\vspace*{-.5cm}\\
+			through the use of a Network. Usually, the deeper the network is, the more complex patterns and behaviours of the target function it can grasp, however it might also encounter overfitting on its training data.\\
+			 For the current exercise, training and testing points are generated according to a theoretical and unknown function, plus some noise:\vspace*{-.1cm}
+			$$\hat{y}=f(x) + noise$$\vspace*{-1cm}\\
 			
-			The data for the task is the following:\vspace*{-.5cm}
+			The data for this task is the following:\vspace*{-.5cm}
 			\begin{figure}[h]
 				\centering
-				\includesvg[width=0.95\linewidth]{../imgs/regression/fulldataset}
+				\includesvg[width=0.85\linewidth]{../imgs/regression/fulldataset}
 			\end{figure}\\
-			Data seems to be generated from a grade-5 polynomial function. It is worth noticing that the training dataset is not optimal, compared to the testing dataset: it is noisier and it has missing values, namely for $x\in[-3,-1]$ and $x\in[2,3]$..\\
+			The points appear to be generated from a grade-5 polynomial function. It is worth noticing that the training dataset is not optimal, compared to the testing dataset: it is indeed noisier and it has missing values, namely for $x\in[-3,-1]$ and $x\in[2,3]$.\\
 			The latter obstacle will be the most hard problem to overcome, since it requires the model to properly generalize on those two areas it has never been trained on.
 			\subsection{\textbf{Methods}}
 			% describe your model architectures and hyperparameters
@@ -59,22 +59,22 @@
 			\begin{itemize}
 				\item \texttt{Ni}: dimension of input vector (int);
 				\item \texttt{No}: dimension of output vector (int);
-				\item \texttt{Nhs}: number of neurons in each hidden layer (list of int);
+				\item \texttt{Nhs}: number of neurons in each hidden layer (list of ints);
 				\item \texttt{activation}: torch activation function;
 				\item \texttt{dropout}: dropout rate after each hidden layer (float);
-				\item \texttt{lr0}: initial Learning Rate for the optimizer (float);
-				\item \texttt{reg\_term }: Regularization term for the optimzier (float);
+				\item \texttt{lr0}: initial Learning Rate of the optimizer (float);
+				\item \texttt{reg\_term }: Regularization term of the optimzier (float);
 			\end{itemize}
-			Both \texttt{Ni} and \texttt{No} must be 1, being the model a 1-D Regressor, while the depth of the hidden layers was kept general: for example \texttt{Nhs = [10,20,10]} will create a 1-10-20-10-1 model.\medskip\\
-			Loss function and optimizer were instead kept fixed:
+			Both \texttt{Ni} and \texttt{No} must be 1, being the model a 1-D Regressor, while the depth of the hidden layers was kept general: for example if \texttt{Nhs=[10,20,10]} it will create a 1-10-20-10-1 model.\medskip\\
+			The loss function and the optimizer were instead kept fixed:
 			\begin{itemize}
 				\item Loss function: \texttt{nn.MSELoss()} (L2 norm);
 				\item Optimizer: \texttt{optim.Adam()};
 			\end{itemize}
-			The models were evaluated by the Validation Error implementing \textit{k-fold cross validation} using the sklearn function \texttt{sklearn.model\_selection.KFold}, for all models the number of folds was fixed to 5.\\
+			All models were evaluated using the Validation Error from \textit{k-fold cross validation} adoperating the sklearn function \texttt{sklearn.model\_selection.KFold}, for all models the number of folds was fixed to 5.\\
 			To obtain optimal hyperparameters a Grid Search was manually implemented with nested for loops and keeping the model with the lowest validation error.
 			\thinsepline\\
-			\textbf{Parameters of Grid-Search}\medskip\\
+			\textbf{Parameters of Grid-Search:}\medskip\\
 			\begin{tabular}{ll}
 			\textbf{Lr}	& 1e-2, 1e-3 \\
 			\textbf{Reg. terms}	& 1e-2, 1e-1 \\
@@ -85,9 +85,9 @@
 			\thinsepline
 			\subsection{\textbf{Results}}
 				\subsubsection{Fully Connected Neural Network}
-				The best parameters found using the Grid Search method were the following
+				The best parameters found using the Grid Search method were the following:
 				\thinsepline\\
-				\textbf{Best parameters}\medskip\\
+				\textbf{Best parameters:}\medskip\\
 				\begin{tabular}{ll}
 					\textbf{Lr}	& 1e-3 \\
 					\textbf{Reg. terms}	& 1e-2 \\
@@ -104,7 +104,7 @@
 					\includesvg[width=0.95\linewidth]{../imgs/regression/bestreg_performance}
 					\caption{Performance of FCNN on both sets}
 				\end{figure}\\
-				Overall, one could say that the implementation of the Regressor is successfull, capturing the general tendency of the data, futhermore the model does also perform accordingly on the first patch of missing data (namely for $x\in[-3,-1]$), however it does not achieve the same goal on the other interval. This failure is mostly to blame on the training data being noisy and having missing patches on the most unpredictable parts of his range (namely two local maxima).
+				Overall, one could say that the implementation of the Regressor is successfull, capturing the general tendency of the data, futhermore the model performs accordingly on the first patch of missing data (namely for $x\in[-3,-1]$), however it does not achieve the same goal on the other interval. This failure is mostly to blame on the training data being noisy and having missing patches on the most unpredictable parts throughout its range (namely two local maxima).
 				\begin{figure}[h]
 					\centering
 					\includesvg[width=0.95\linewidth]{../imgs/regression/bestreg_losses}
@@ -119,13 +119,13 @@
 						\item \texttt{grade:} maximum grade of the fitting polynomial function;
 						\item \texttt{reg:} regularization term;
 					\end{itemize}
-					applying the least square method on the training dataset and choosing the model with the lowest error on the test dataset:\newpage
+					and applying the least square method on the training dataset and choosing the model with the lowest error on the test dataset.\newpage
 					\begin{figure}[h]
 						\centering
 						\includesvg[width=0.95\linewidth]{../imgs/regression/polymodel}
 					\end{figure}
 					However, as one can see, the grade of the best model may be too high and it will not generalize well for points outside the range [-4,4].\medskip\\
-					Being not a machine learning model, it is not wise to operate with training and test set, however in order to fairly compare the two models it was preferred perform both Grid Searches equally.
+					Being not a machine learning model, it is not wise to operate with training and test set, however in order to fairly compare this model to the FCNN it was preferred perform both Grid Searches equally.
 	\section{\textbf{Classification task}}
 		% Describe quickly the task of classification
 		The objective of classification is to obtain a \textit{rule} that outputs the most probable label (belonging to discrete space $\mathcal{L}$) given a set of parameters X.\medskip\\
@@ -170,7 +170,7 @@
 				\end{itemize}
 			\end{itemize}
 			As input during the initialization, one must specify the \texttt{channels} array (of two integers).\medskip\\
-			For the Grid Search, different initial learning rates, regularization terms, channels arrays, dropout rates and activations were tried out, while the losses was kept \texttt{nn.CrossEntropyLoss} and the optimizer was \texttt{optim.Adam}
+			For the Grid Search, different initial learning rates, regularization terms, channels arrays, dropout rates and activations were tried out, while the loss function was kept \texttt{nn.CrossEntropyLoss} and the optimizer was fixed \texttt{optim.Adam}
 			\thinsepline\\
 			\textbf{Best parameters}\medskip\\
 			\begin{tabular}{ll}
@@ -182,7 +182,7 @@
 			\end{tabular}
 			\thinnersepline\\
 			\textbf{Epochs:} 100\\
-			\textbf{Accuracy on Test set:} 90.11 \%\vspace*{-.2cm}\\
+			\textbf{Accuracy on Test set:} 89.81 \%\vspace*{-.2cm}\\
 			\thinsepline\vspace*{-.7cm}\\
 			\newpage
 			\begin{figure}[h]
@@ -193,39 +193,39 @@
 			\begin{figure}[h]
 				\centering
 				\includesvg[width=0.95\linewidth]{../imgs/classification/best_classificator_grid}
-				\caption{Confusion matrix of the model}
+				\caption{Confusion matrix of the model on the test dataset}
 			\end{figure}
-			From the confusion matrix above, it is clear that the implementation of the classificator is overall convincing, however there it does not well distinguish between T-shirt/top and Shirt. This kind of behaviour was although expected since those two classes are aesthetically close.
+			From the confusion matrix above, it is clear that the implementation of the classificator is overall convincing, however it does not particularly well distinguish between the classes "T-shirt/top" and "Shirt". This kind of behaviour was although expected since those two classes are aesthetically close.
 			\subsubsection{Data augmentation}
-			Augmenting the training data mainly helps a convolutional neural network obtain rotation invariance and generalize better overall.
+			Augmenting the training data mainly helps a convolutional neural network obtain rotation invariance and  overall generalize better.
 			Data augmentation was applied on the training set by applying the following transformations on the dataloader:\\
-			\begin{minted}[%
-				xleftmargin=-7cm, fontsize=\small
-				]{python}
-				augmentation = 
-				  transforms.Compose(
-				   [transforms.ToTensor(),
-				    transforms.RandomVerticalFlip(p=0.5),
-				    transforms.RandomCrop(28,padding=2)])
+			%\begin{minted}[%
+			%	xleftmargin=-7cm, fontsize=\small
+			%	]{python}
+			%	augmentation = 
+			%	  transforms.Compose(
+			%	   [transforms.ToTensor(),
+			%	    transforms.RandomVerticalFlip(p=0.5),
+			%	    transforms.RandomCrop(28,padding=2)])
 				
-			\end{minted}
-			Since having a larger training set required longer training time per epoch, it was opted not to perform a grid search and to stick with the most optimal parameter found with the model of the last section:
+			%\end{minted}
+			Since having a larger training set required longer training time per epoch, it was opted not to perform a grid search and to stick with the most optimal parameters found with the model of the last section:
 			\thinnersepline\\
 			\textbf{Epochs:} 100\\
-			\textbf{Accuracy on Test set:} 87.55 \%\vspace*{-.2cm}\\
+			\textbf{Accuracy on Test set:} 87.69 \%\vspace*{-.2cm}\\
 			\thinnersepline\\
-			In this case, data augmentation does not help the model reach an higher accuracy. This is most probably due to the fact that the images on the test set are well standardizer, namely the clothes are perfectly in frame and not-rotated, hence, augmenting the data just misleads our model. \medskip\\
+			In this case, data augmentation does not help the model reach an higher accuracy. This is most probably due to the fact that the images on the test set are well standardized, namely the clothes are perfectly in frame and not-rotated, hence, augmenting the data just misleads our model. \medskip\\
 			\subsubsection{Finetuning a ResNet50}
-			In addition, the pretrained model \texttt{resnet50} was modified to support grayscale images and 2 fully connected hidden layers at the end were added as finetuning.\\
-			Due to the long period of time for the training, no Grid search was performed for this model either.
+			In addition, the pretrained model \texttt{resnet50} was modified to support grayscale images and two fully connected hidden layers were added at the end as finetuning.\\
+			Due to the long periods of time for the training, no Grid Search was performed for this model either.
 			\thinnersepline\\
 			\textbf{lr0:} 1e-3\\
 			\textbf{Loss:} nn.CrossEntropyLoss()\\
 			\textbf{Optimizer:} optim.Adam() \\
 			\textbf{Epochs:} 100 \\
-			\textbf{Accuracy on Test set:} ??? \%\vspace*{-.2cm}\\
+			\textbf{Accuracy on Test set:} 91.57 \%\vspace*{-.2cm}\\
 			\thinnersepline\\
-			
+			As for the main Classificator, the main source of error comes from not accurately distinguish the class "T-shirt/top" from "Shirt", however implementing a ResNet50 does improve the accuracy almost up to 92\%
 	\printbibliography
 	
 	\onecolumn
