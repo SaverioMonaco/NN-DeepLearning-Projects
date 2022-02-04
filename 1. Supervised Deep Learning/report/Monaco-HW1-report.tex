@@ -11,6 +11,7 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{svg}
+\usepackage{minted}
 %\svgsetup{inkscapeexe="C:/Program Files/Inkscape/bin/inkscape.exe"}
 
 \usepackage{biblatex}
@@ -127,23 +128,141 @@
 					Being not a machine learning model, it is not wise to operate with training and test set, however in order to fairly compare the two models it was preferred perform both Grid Searches equally.
 	\section{\textbf{Classification task}}
 		% Describe quickly the task of classification
-		The objective of classification is to obtain a \textit{rule} that outputs the most probable label (belonging to discrete space $\mathcal{L}$) starting from a set of parameters $\mathcal{X}$.\medskip\\
-		The second task consists in implementing a Convolutional Neural Network to build a Classificator on the FashionMNIST dataset\cite{xiao2017fashion}.
-		Solely for Classification, it is possible to define a particular metric that intuitively tells how well the model is performing:
-		$$Accuracy: \frac{\text{\#samples} - \text{misclassified\_samples}}{\text{\#samples}}$$
+		The objective of classification is to obtain a \textit{rule} that outputs the most probable label (belonging to discrete space $\mathcal{L}$) given a set of parameters X.\medskip\\
+		The second task consists in implementing a Convolutional Neural Network to build a Classificator on the FashionMNIST dataset\cite{xiao2017fashion}. Each sample of data is a $28\times28$ grayscale image and its possible label is an integer between 0 and 9 (each number represent a type of clothing or accessories such as T-shirt/top, Trouser, Pullover).\vspace*{-.5cm}
+		\begin{figure}[h]
+			\centering
+			\includesvg[width=0.95\linewidth]{../imgs/classification/fashionexamples}
+			\caption{Samples of FashionMNIST}
+		\end{figure}\\
+		The size of the set for this task is broader, having 60,000 samples for the training set, and 10,000 samples for the test set.
 		\subsection{\textbf{Methods}}
 			% describe your model architectures and hyperparameters
-		\subsection{\textbf{Results}}
-			%  present the simulation results
+			As for the previous task, the most optimal models were found using a custom made Grid Search and evaluating them using K-Fold Cross-Validation, with $K=5$.
 			
-	\section{\textbf{Conclusions}}
-	%\printbibliography
+			\subsection{\textbf{Results}}
+			%  present the simulation results
+			\subsubsection{Basic Convolutional Network}
+			The structure of the model implemented is the following:
+			\begin{itemize}
+				\item \textit{First convolutional layer}
+				\begin{itemize}
+					\item in\_channels = 1;
+					\item out\_channels = channels[0];
+					\item kernel\_size = 5;
+					\item stride = 1;
+					\item padding = 2;
+				\end{itemize} 
+				\item A max pooling layer with kernel size 2
+				\item \textit{Second convolutional layer}
+				\begin{itemize}
+					\item in\_channels = channels[0];
+					\item out\_channels = channels[1];
+					\item kernel\_size = 5;
+					\item stride = 1;
+					\item padding = 2;
+				\end{itemize} 
+				\item another max pooling layer with kernel size 2
+				\item \textit{A final layer}
+				\begin{itemize}
+					\item input\_size = 7$\times$7$\times$channels[1]
+					\item output\_size = 10
+				\end{itemize}
+			\end{itemize}
+			As input during the initialization, one must specify the \texttt{channels} array (of two integers).\medskip\\
+			For the Grid Search, different initial learning rates, regularization terms, channels arrays, dropout rates and activations were tried out, while the losses was kept \texttt{nn.CrossEntropyLoss} and the optimizer was \texttt{optim.Adam}
+			\thinsepline\\
+			\textbf{Best parameters}\medskip\\
+			\begin{tabular}{ll}
+				\textbf{Lr}	& 1e-3 \\
+				\textbf{Reg. terms}	& 1e-4 \\
+				\textbf{channels} & [6,12] \\
+				\textbf{Dropout} & 1e-1 \\
+				\textbf{Act. fun.} & nn.ReLU() \\
+			\end{tabular}
+			\thinnersepline\\
+			\textbf{Epochs:} 100\\
+			\textbf{Accuracy on Test set:} 90.11 \%\vspace*{-.2cm}\\
+			\thinsepline\vspace*{-.7cm}\\
+			\newpage
+			\begin{figure}[h]
+				\centering
+				\includesvg[width=0.95\linewidth]{../imgs/classification/bestmodel_losses}
+				\caption{First image: Loss curves on Validation and Training Set.\\ Second image: Accuracy of the model on the test set throughout its learning}
+			\end{figure}
+			\begin{figure}[h]
+				\centering
+				\includesvg[width=0.95\linewidth]{../imgs/classification/best_classificator_grid}
+				\caption{Confusion matrix of the model}
+			\end{figure}
+			From the confusion matrix above, it is clear that the implementation of the classificator is overall convincing, however there it does not well distinguish between T-shirt/top and Shirt. This kind of behaviour was although expected since those two classes are aesthetically close.
+			\subsubsection{Data augmentation}
+			Augmenting the training data mainly helps a convolutional neural network obtain rotation invariance and generalize better overall.
+			Data augmentation was applied on the training set by applying the following transformations on the dataloader:\\
+			\begin{minted}[%
+				xleftmargin=-7cm, fontsize=\small
+				]{python}
+				augmentation = 
+				  transforms.Compose(
+				   [transforms.ToTensor(),
+				    transforms.RandomVerticalFlip(p=0.5),
+				    transforms.RandomCrop(28,padding=2)])
+				
+			\end{minted}
+			Since having a larger training set required longer training time per epoch, it was opted not to perform a grid search and to stick with the most optimal parameter found with the model of the last section:
+			\thinnersepline\\
+			\textbf{Epochs:} 100\\
+			\textbf{Accuracy on Test set:} 87.55 \%\vspace*{-.2cm}\\
+			\thinnersepline\\
+			In this case, data augmentation does not help the model reach an higher accuracy. This is most probably due to the fact that the images on the test set are well standardizer, namely the clothes are perfectly in frame and not-rotated, hence, augmenting the data just misleads our model. \medskip\\
+			\subsubsection{Finetuning a ResNet50}
+			In addition, the pretrained model \texttt{resnet50} was modified to support grayscale images and 2 fully connected hidden layers at the end were added as finetuning.\\
+			Due to the long period of time for the training, no Grid search was performed for this model either.
+			\thinnersepline\\
+			\textbf{lr0:} 1e-3\\
+			\textbf{Loss:} nn.CrossEntropyLoss()\\
+			\textbf{Optimizer:} optim.Adam() \\
+			\textbf{Epochs:} 100 \\
+			\textbf{Accuracy on Test set:} ??? \%\vspace*{-.2cm}\\
+			\thinnersepline\\
+			
+	\printbibliography
 	
-	\newpage
-	a
-	\newpage
 	\onecolumn
 	\section{\textbf{Appendix}}
-		
-	
+		\subsection{Regression}
+			\begin{figure}[h]
+				\centering
+				\includesvg[width=1\linewidth]{../imgs/regression/bestreg_weights}
+				\caption{Histogram of weights and biases of the best regressor found using Grid Search}
+			\end{figure}
+			\begin{figure}[h]
+				\centering
+				\includesvg[width=1\linewidth]{../imgs/regression/bestreg_activations}
+				\caption{Activation of the best regressor}
+			\end{figure}
+			\newpage
+			\begin{figure}[h]
+				\centering
+				\includesvg[width=1\linewidth]{../imgs/regression/untrained_weights}
+				\caption{Histogram of weights and biases of a not trained model}
+			\end{figure}
+			\begin{figure}[h]
+				\centering
+				\includesvg[width=1\linewidth]{../imgs/regression/untrained_activations}
+				\caption{Activation of the same not trained model}
+			\end{figure}
+		\newpage\subsection{Classification}
+			\begin{figure}[h]
+				\centering
+				\includesvg[width=1\linewidth]{../imgs/classification/trainedlayer1}\\
+				\includesvg[width=1\linewidth]{../imgs/classification/trainedlayer2}
+				\caption{Filters of both convolutional layers}
+			\end{figure}
+			\begin{figure}[h]
+				\centering
+				\includesvg[width=1\linewidth]{../imgs/classification/trainedactivation1}\\
+				\includesvg[width=1\linewidth]{../imgs/classification/trainedactivation2}
+				\caption{Activation of both convolutional layers}
+			\end{figure}
 \end{document}
