@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:xhtml="http://www.w3.org/1999/xhtml"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="74mm"
+   height="52mm"
+   viewBox="0 0 74 52"
+   version="1.1"
+   id="SVGRoot"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="autoencoder.svg">
+  <defs
+     id="defs10">
+    <style
+       id="style4536"
+       type="text/css">*{stroke-linecap:butt;stroke-linejoin:round;}</style>
+    <clipPath
+       id="p921965ae86">
+      <rect
+         id="rect4548"
+         y="34.56"
+         x="112.68"
+         width="217.44"
+         height="217.44" />
+    </clipPath>
+    <style
+       id="style4568"
+       type="text/css">*{stroke-linecap:butt;stroke-linejoin:round;}</style>
+    <clipPath
+       id="p32457b32b2">
+      <rect
+         id="rect4580"
+         y="34.56"
+         x="112.68"
+         width="217.44"
+         height="217.44" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="4"
+     inkscape:cx="115.64542"
+     inkscape:cy="77.201802"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g4244"
+     showgrid="false"
+     inkscape:window-width="2488"
+     inkscape:window-height="1376"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata13">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g4244"
+       transform="matrix(0.26458333,0,0,0.26458333,33.146685,0.20781305)">
+      <g
+         id="g4198"
+         transform="matrix(0.4,0,0,0.4,-60.100002,30.249999)">
+        <rect
+           id="rect4148"
+           pointer-events="all"
+           ry="6"
+           rx="6"
+           height="60"
+           width="40"
+           y="130"
+           x="165"
+           style="fill:#ffffff;stroke:#000000" />
+        <path
+           id="path4150"
+           pointer-events="stroke"
+           stroke-miterlimit="10"
+           d="M 65,240 175,190"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-miterlimit:10" />
+        <path
+           id="path4152"
+           pointer-events="stroke"
+           stroke-miterlimit="10"
+           d="m 65,80 110,50"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-miterlimit:10" />
+        <rect
+           id="rect4154"
+           pointer-events="all"
+           ry="12"
+           rx="12"
+           height="160"
+           width="80"
+           y="80"
+           x="5"
+           style="fill:#ffffff;stroke:#000000" />
+        <path
+           id="path4156"
+           pointer-events="stroke"
+           stroke-miterlimit="10"
+           d="M 195,130 295,80"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-miterlimit:10" />
+        <path
+           id="path4158"
+           pointer-events="stroke"
+           stroke-miterlimit="10"
+           d="m 195,190 100,50"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-miterlimit:10" />
+        <rect
+           id="rect4160"
+           pointer-events="all"
+           ry="12"
+           rx="12"
+           height="160"
+           width="80"
+           y="80"
+           x="275"
+           style="fill:#ffffff;stroke:#000000" />
+        <rect
+           id="rect4162"
+           pointer-events="all"
+           height="20"
+           width="110"
+           y="215"
+           x="130"
+           style="fill:none;stroke:none" />
+        <g
+           id="g4168"
+           transform="translate(-0.5,-0.5)">
+          <switch
+             id="switch4166">
+            <foreignObject
+               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+               height="100%"
+               width="100%"
+               pointer-events="none"
+               style="overflow: visible; text-align: left;">
+              <xhtml:div
+                 style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 225px; margin-left: 185px;">
+                <xhtml:div
+                   data-drawio-colors="color: rgb(0, 0, 0); "
+                   style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                  <xhtml:div
+                     style="display: inline-block; font-size: 16px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;">
+                    <xhtml:div
+                       style="font-size: 16px">Latent space</xhtml:div>
+                  </xhtml:div>
+                </xhtml:div>
+              </xhtml:div>
+            </foreignObject>
+            <text
+               id="text4164"
+               font-size="16px"
+               y="230"
+               x="185"
+               style="font-size:16px;font-family:Helvetica;text-anchor:middle;fill:#000000">Latent space</text>
+          </switch>
+        </g>
+        <rect
+           id="rect4170"
+           pointer-events="all"
+           transform="rotate(-90,92.5,272.5)"
+           height="185"
+           width="50"
+           y="180"
+           x="67.5"
+           style="fill:none;stroke:none" />
+        <path
+           id="path4172"
+           pointer-events="all"
+           transform="rotate(-90,92.5,272.5)"
+           stroke-miterlimit="10"
+           d="m 117.5,180 h -25 v 185 h 25"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-miterlimit:10" />
+        <path
+           id="path4174"
+           pointer-events="all"
+           transform="rotate(-90,92.5,272.5)"
+           stroke-miterlimit="10"
+           d="m 67.5,272.5 h 25"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-miterlimit:10" />
+        <rect
+           id="rect4176"
+           pointer-events="all"
+           transform="rotate(90,278,52.5)"
+           height="185"
+           width="50"
+           y="-40"
+           x="253"
+           style="fill:none;stroke:none" />
+        <path
+           id="path4178"
+           pointer-events="all"
+           transform="rotate(90,278,52.5)"
+           stroke-miterlimit="10"
+           d="m 303,-40 h -25 v 185 h 25"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-miterlimit:10" />
+        <path
+           id="path4180"
+           pointer-events="all"
+           transform="rotate(90,278,52.5)"
+           stroke-miterlimit="10"
+           d="m 253,52.5 h 25"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-miterlimit:10" />
+        <rect
+           id="rect4182"
+           pointer-events="all"
+           height="30"
+           width="110"
+           y="300"
+           x="37.5"
+           style="fill:none;stroke:none" />
+        <g
+           id="g4188"
+           transform="translate(-0.5,-0.5)">
+          <switch
+             id="switch4186">
+            <foreignObject
+               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+               height="100%"
+               width="100%"
+               pointer-events="none"
+               style="overflow: visible; text-align: left;">
+              <xhtml:div
+                 style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 315px; margin-left: 93px;">
+                <xhtml:div
+                   data-drawio-colors="color: rgb(0, 0, 0); "
+                   style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                  <xhtml:div
+                     style="display: inline-block; font-size: 24px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;">Encoder</xhtml:div>
+                </xhtml:div>
+              </xhtml:div>
+            </foreignObject>
+            <text
+               id="text4184"
+               font-size="24px"
+               y="322"
+               x="93"
+               style="font-size:24px;font-family:Helvetica;text-anchor:middle;fill:#000000">Encoder</text>
+          </switch>
+        </g>
+        <rect
+           id="rect4190"
+           pointer-events="all"
+           height="30"
+           width="110"
+           y="0"
+           x="223"
+           style="fill:none;stroke:none" />
+        <g
+           id="g4196"
+           transform="translate(-0.5,-0.5)">
+          <switch
+             id="switch4194">
+            <foreignObject
+               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+               height="100%"
+               width="100%"
+               pointer-events="none"
+               style="overflow: visible; text-align: left;">
+              <xhtml:div
+                 style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 15px; margin-left: 278px;">
+                <xhtml:div
+                   data-drawio-colors="color: rgb(0, 0, 0); "
+                   style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                  <xhtml:div
+                     style="display: inline-block; font-size: 24px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;">Decoder</xhtml:div>
+                </xhtml:div>
+              </xhtml:div>
+            </foreignObject>
+            <text
+               id="text4192"
+               font-size="24px"
+               y="22"
+               x="278"
+               style="font-size:24px;font-family:Helvetica;text-anchor:middle;fill:#000000">Decoder</text>
+          </switch>
+        </g>
+      </g>
+      <g
+         id="figure_1"
+         transform="matrix(0.21333334,0,0,0.21333334,76.391189,63.279999)"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <g
+           id="patch_1"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <path
+             id="path4540"
+             style="fill:none;stroke-linecap:butt;stroke-linejoin:round"
+             d="M 0,288 H 432 V 0 H 0 Z"
+             inkscape:connector-curvature="0" />
+        </g>
+        <g
+           id="axes_1"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <g
+             id="g4544"
+             clip-path="url(#p921965ae86)"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <image
+               y="-34"
+               xlink:href="data:image/png;base64, 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"
+               x="112.68"
+               width="218"
+               transform="matrix(1,0,0,-1,0,218)"
+               id="image69195e8499"
+               height="218"
+               style="stroke-linecap:butt;stroke-linejoin:round" />
+          </g>
+        </g>
+      </g>
+      <g
+         id="figure_1-3"
+         transform="matrix(0.21333334,0,0,0.21333334,-144.35881,63.279995)"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <g
+           id="patch_1-6"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <path
+             id="path4572"
+             style="fill:none;stroke-linecap:butt;stroke-linejoin:round"
+             d="M 0,288 H 432 V 0 H 0 Z"
+             inkscape:connector-curvature="0" />
+        </g>
+        <g
+           id="axes_1-7"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <g
+             id="g4576"
+             clip-path="url(#p32457b32b2)"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <image
+               y="-34"
+               xlink:href="data:image/png;base64, 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"
+               x="112.68"
+               width="218"
+               transform="matrix(1,0,0,-1,0,218)"
+               id="image20288941d8"
+               height="218"
+               style="stroke-linecap:butt;stroke-linejoin:round" />
+          </g>
+        </g>
+      </g>
+      <g
+         style="stroke-linecap:butt;stroke-linejoin:round"
+         id="g4711"
+         transform="matrix(0.05497558,0,0,0.05497558,-71.393619,86.436378)">
+        <polygon
+           id="polygon4656"
+           points="148,199.25 148,264.25 297.5,148.25 148,33.25 148,100.25 0,100.25 0,199.25 "
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4658"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+</g>
+        <g
+           id="g4660"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+</g>
+        <g
+           id="g4662"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+</g>
+        <g
+           id="g4664"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+</g>
+        <g
+           id="g4666"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+</g>
+        <g
+           id="g4668"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+</g>
+        <g
+           id="g4670"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+</g>
+        <g
+           id="g4672"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+</g>
+        <g
+           id="g4674"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+</g>
+        <g
+           id="g4676"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+</g>
+        <g
+           id="g4678"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+</g>
+        <g
+           id="g4680"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+</g>
+        <g
+           id="g4682"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+</g>
+        <g
+           id="g4684"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+</g>
+        <g
+           id="g4686"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+</g>
+      </g>
+      <g
+         style="stroke-linecap:butt;stroke-linejoin:round"
+         id="g4711-5"
+         transform="matrix(0.05497558,0,0,0.05497558,82.043575,86.435931)">
+        <polygon
+           id="polygon4656-3"
+           points="0,199.25 148,199.25 148,264.25 297.5,148.25 148,33.25 148,100.25 0,100.25 "
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4658-5"
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4660-6"
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4662-2"
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4664-9"
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4666-1"
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4668-2"
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4670-7"
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4672-0"
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4674-9"
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4676-3"
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4678-6"
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4680-0"
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4682-6"
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4684-2"
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+        <g
+           id="g4686-6"
+           style="stroke-linecap:butt;stroke-linejoin:round" />
+      </g>
+    </g>
+  </g>
+</svg>

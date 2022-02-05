@@ -11,8 +11,8 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{svg}
-%\usepackage{minted}
-\svgsetup{inkscapeexe="C:/Program Files/Inkscape/bin/inkscape.exe"}
+\usepackage{minted}
+%\svgsetup{inkscapeexe="C:/Program Files/Inkscape/bin/inkscape.exe"}
 
 \usepackage{biblatex}
 \addbibresource{bib1.bib}
@@ -129,7 +129,7 @@
 	\section{\textbf{Classification task}}
 		% Describe quickly the task of classification
 		The objective of classification is to obtain a \textit{rule} that outputs the most probable label (belonging to discrete space $\mathcal{L}$) given a set of parameters X.\medskip\\
-		The second task consists in implementing a Convolutional Neural Network to build a Classificator on the FashionMNIST dataset\cite{xiao2017fashion}. Each sample of data is a $28\times28$ grayscale image and its possible label is an integer between 0 and 9 (each number represent a type of clothing or accessories such as T-shirt/top, Trouser, Pullover).\vspace*{-.5cm}
+		The second task consists in implementing a Convolutional Neural Network to build a Classificator on the FashionMNIST dataset. Each sample of data is a $28\times28$ grayscale image and its possible label is an integer between 0 and 9 (each number represent a type of clothing or accessories such as T-shirt/top, Trouser, Pullover).\vspace*{-.5cm}
 		\begin{figure}[h]
 			\centering
 			\includesvg[width=0.95\linewidth]{../imgs/classification/fashionexamples}
@@ -199,16 +199,16 @@
 			\subsubsection{Data augmentation}
 			Augmenting the training data mainly helps a convolutional neural network obtain rotation invariance and  overall generalize better.
 			Data augmentation was applied on the training set by applying the following transformations on the dataloader:\\
-			%\begin{minted}[%
-			%	xleftmargin=-7cm, fontsize=\small
-			%	]{python}
-			%	augmentation = 
-			%	  transforms.Compose(
-			%	   [transforms.ToTensor(),
-			%	    transforms.RandomVerticalFlip(p=0.5),
-			%	    transforms.RandomCrop(28,padding=2)])
+			\begin{minted}[%
+				xleftmargin=-7cm, fontsize=\small
+				]{python}
+				augmentation = 
+				  transforms.Compose(
+				   [transforms.ToTensor(),
+				    transforms.RandomVerticalFlip(p=0.5),
+				    transforms.RandomCrop(28,padding=2)])
 				
-			%\end{minted}
+			\end{minted}
 			Since having a larger training set required longer training time per epoch, it was opted not to perform a grid search and to stick with the most optimal parameters found with the model of the last section:
 			\thinnersepline\\
 			\textbf{Epochs:} 100\\
@@ -226,7 +226,6 @@
 			\textbf{Accuracy on Test set:} 91.57 \%\vspace*{-.2cm}\\
 			\thinnersepline\\
 			As for the main Classificator, the main source of error comes from not accurately distinguish the class "T-shirt/top" from "Shirt", however implementing a ResNet50 does improve the accuracy almost up to 92\%
-	\printbibliography
 	
 	\onecolumn
 	\section{\textbf{Appendix}}
