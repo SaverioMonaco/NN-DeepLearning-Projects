@@ -32,8 +32,8 @@
 \begin{document}
 	\maketitle
 	\begin{abstract} As for the second homework, the main models of Unupervised Deep Learning are investigated on the FashionMNIST dataset.\\ 
-	Firstly, an Autoencoder has been developed, and its hyperparameters were properly optimized. The best model has been then fine-tuned aiming for a working Classifier.\\
-	As for the last model, a Generative Adversarial Network has been implemented for the task of generating new samples.
+	Firstly, an Autoencoder has been developed, and its hyperparameters were properly optimized.\\ Then the best model has been then fine-tuned aiming for a working Classifier.\\
+	As for the last model, a Generative Adversarial Network has been implemented for the objective of generating completely new samples.
 	\end{abstract}
 	\section*{Data}
 	FashionMNIST is a dataset of low-resolution (28$\times$28) grayscale images of fashion products from 10 categories (such as "Trousers", "Sandal", "Bag"). In the dataset there are 60,000 images for the training-set and 10,000 for the test-set.\vspace*{-.5cm}
@@ -46,7 +46,7 @@
 	\section{\textbf{Convolutional Auto-Encoders}}
 	% explain autoencoders
 	The task of an Auto-Encoder is to reconstruct its input image, thus it is not a Classification, nor a Regression, nor a Generative model.\\
-	It consist in a Encoder, where the input images gets convoluted in a smaller space (called \textit{latent space}) and a Decoder, where the 'compressed' image gets de-convoluted to its original size.\\ The power of an Autoencoder lies in the 'bottleneck' shape (see Fig. 2). Through learning the Neural Network learns the most efficient weights and biases to reconstruct the input images as good as possible performing a dimensionality reduction.	
+	It consist in a Encoder, where the input images gets convoluted in a smaller space (called \textit{latent space}) and a Decoder, where the 'compressed' images get de-convoluted to their original size.\\ The power of an Autoencoder lies in the 'bottleneck' shape (see Fig. 2). Through learning the Neural Network learns the most efficient weights and biases to compress and retrieve the input images as good as possible performing a dimensionality reduction.	
 		\begin{figure}[h]
 			\centering
 			{\scriptsize
@@ -66,7 +66,7 @@
 			\item Second Linear layer: in\_features=64, out\_features=latent\_dim;
 		\end{itemize}
 		\textbf{Decoder:} is a specular Network of the Encoder built with the use of \texttt{nn.ConvTranspose2d} for the de-convolution.\\
-		The Mean Square error Loss was adoperated to evaluate the models, hence the difference squared of each pixel of the real image and its reconstructed was computed.
+		The Mean Square Error Loss was adoperated to evaluate the models, hence the difference squared of each pixel of the real image and its reconstructed was computed.
 		\subsection{\textbf{Results}}
 		%  present the simulation results
 		Firstly, a 2-Dimensional latent space Autoencoder was trained for inspecting the points of the testing images in the Latent Space (that can be plotted as a matter of fact as a 2D scatter plot):\vspace*{-.5cm}
@@ -77,8 +77,8 @@
 			\label{fig:2dlatent}
 		\end{figure}\\
 		Each dot represents the coordinate of a single image of the test dataset in the 2-D latent space, and its color represents its label (that was never given to the Network).\\
-		Without ever given the information of the label to the network, it grouped each dot according to it, in addition, dots of different class that are close in the latent space, can be considered semantically close, so it can be defined a metric in the \textit{latent space} on how much clothes look alike.\\
-		To demonstrate better the last statement, dots along a line that connects the blue path and the red path were decoded (namely from the "Boot" group to the "Sneaker" group):\vspace*{-.5cm}
+		Without ever getting the information of the label to the network, it grouped each dot according to them, in addition, dots of different class that are close in the latent space, can be considered semantically close, so it can be defined a metric in the \textit{latent space} on how much clothes look alike.\\
+		To demonstrate visually the last statement, dots along a line that connects the blue patch and the red patch were decoded (namely from the "Boot" group to the "Sneaker" group):\vspace*{-.5cm}
 		\begin{figure}[h]
 			\centering
 			\includesvg[width=1\linewidth]{../imgs/autoencoder_transf}
@@ -86,7 +86,7 @@
 			\caption{Gradual transformation of a Boot to a Sneaker}
 			\label{fig:trasf}
 		\end{figure}\medskip\\
-		After the inspeciton of the latent space, a Grid Search was performed using Optuna Python library for hyperparameters optimization. The dimension of the encoded space this time was kept fixed to 16, while the initial learning rate, regularization term of the optimizer, and the optimizer itself were tunable:
+		After the inspeciton of the latent space of this simple model, a Grid Search was performed using Optuna Python library for hyperparameters optimization. The dimension of the encoded space this time was kept fixed to 16 (instead of 2), while the initial learning rate, regularization term of the optimizer, and the optimizer itself were tunable:
 		\begin{itemize}
 			\item[-] Optimizer: Adam, SGD;
 			\item[-] Initial Learning rate: from 1e-4 to 1e-3;
@@ -150,8 +150,8 @@
 		
 	\section{\textbf{Generative Adversarial Networks}}
 	% explain gans
-		The last model chosen for the generative task was the Generative Adversarial Network (GAN). A GAN is really two Neural Networks, the Generator that tries to imitate the input dataset, and the Discriminator that trie to tell the difference betweent the fake images from the generator and the real images of the dataset.\\
-		At the beginning of lerning, the discriminator always does a good job in detecting what images are fake, since the generator will output images close to random noise, but eventually the generator picks up until ideally the discriminator does not distinguish a fake image from a real one.
+		The last model chosen for the generative task is the Generative Adversarial Network (GAN). A GAN is in reality two Neural Networks, the Generator that tries to imitate the input dataset, and the Discriminator that tries to tell the difference between the fake images from the generator and the real images of the dataset.\\
+		At the beginning of learning, the discriminator always does a better job in detecting what images are fake, since the generator will output images close to random noise, but eventually the generator picks up until ideally the discriminator cannot distinguish a fake image from a real one.
 		\subsection{\textbf{Methods}}
 		% describe your model architectures and hyperparameters
 		The GAN was implemented through a single Python class, containing both models for discriminating and generating:\\
@@ -199,7 +199,7 @@
 		\includesvg[width=1\linewidth]{../imgs/gan250}\vspace*{-.5cm}\\
 		\caption{Fake generated samples}
 		\label{fig:ganimgs}
-	\end{figure}
+	\end{figure}\\
 	In some images it is possible to see that the generator tries to output multiple clothes at once although it becomes less common with further training.\\
 	The generated data appear \textit{noisy}, coincidentally Autoencoders can denoise images, the following images were generated through the GAN and then fowarded through the Autoencoder found using Optuna:
 	\begin{figure}[h]

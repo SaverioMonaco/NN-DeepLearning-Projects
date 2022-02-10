@@ -34,7 +34,7 @@
 
 \begin{document}
 	\maketitle
-	\begin{abstract} As for the first homework, the tasks of classification and regression in a Supervised Deep Learning framework are investigated.\\ For regression, it is needed to effectively approximate a noisy unknown 1-dimensional function.\\ The classification task instead consists in building a Convolutional Neural Network for the FashionMNIST Dataset.\\
+	\begin{abstract} As for the first homework, the tasks of regression and classification in a Supervised Deep Learning framework are investigated.\\ The first task consists in approximating a noisy unknown 1-dimensional function.\\ The classification task instead consists in building a Convolutional Neural Network for the FashionMNIST Dataset.\\
 	For both tasks, more advanced techniques are further explored and compared.
 	\end{abstract}
 			%  present the simulation results
@@ -42,7 +42,7 @@
 			% Describe quickly the task of regression
 			The task of Regression in a Neural Network framework consist in approximating a scalar function:\vspace*{-.3cm}
 			$$f:\mathbb{R}\to\mathbb{R}$$\vspace*{-.5cm}\\
-			through the use of a Network. Usually, the deeper the network is, the more complex patterns and behaviours of the target function it can grasp, however it might also encounter overfitting on its training data.\\
+			through the use of a Network. Usually, the deeper the network is, the more complex patterns and behaviours of the target function it can grasp, however it might also encounter overfitting on the training data.\\
 			 For the current exercise, training and testing points are generated according to a theoretical and unknown function, plus some noise:\vspace*{-.1cm}
 			$$\hat{y}=f(x) + noise$$\vspace*{-1cm}\\
 			
@@ -51,11 +51,11 @@
 				\centering
 				\includesvg[width=0.85\linewidth]{../imgs/regression/fulldataset}
 			\end{figure}\\
-			The points appear to be generated from a grade-5 polynomial function. It is worth noticing that the training dataset is not optimal, compared to the testing dataset: it is indeed noisier and it has missing values, namely for $x\in[-3,-1]$ and $x\in[2,3]$.\\
-			The latter obstacle will be the most hard problem to overcome, since it requires the model to properly generalize on those two areas it has never been trained on.
+			The points appear to be generated from a grade-5 polynomial function. It is worth noticing that the training dataset is not optimal compared to the testing dataset: it is indeed noisier and it has missing values, namely for $x\in[-3,-1]$ and $x\in[2,3]$.\\
+			The latter obstacle will be the hardest problem to overcome, since it requires the model to properly generalize on those two areas it has never been trained on.
 			\subsection{\textbf{Methods}}
 			% describe your model architectures and hyperparameters
-			For the Regression task, it was implemented a Python class: \texttt{RegFC} to generate a Fully Connected Neural Network (FCNN) model with the following parameters:
+			For this task, it was implemented a Python class: \texttt{RegFC} to generate a Fully Connected Neural Network (FCNN) model with the following parameters:
 			\begin{itemize}
 				\item \texttt{Ni}: dimension of input vector (int);
 				\item \texttt{No}: dimension of output vector (int);
@@ -71,7 +71,7 @@
 				\item Loss function: \texttt{nn.MSELoss()} (L2 norm);
 				\item Optimizer: \texttt{optim.Adam()};
 			\end{itemize}
-			All models were evaluated using the Validation Error from \textit{k-fold cross validation} adoperating the sklearn function \texttt{sklearn.model\_selection.KFold}, for all models the number of folds was fixed to 5.\\
+			All models were evaluated through the Validation Error from \textit{k-fold cross validation} using the sklearn function \texttt{sklearn.model\_selection.KFold}, for all models the number of folds was fixed to 5.\\
 			To obtain optimal hyperparameters a Grid Search was manually implemented with nested for loops and keeping the model with the lowest validation error.
 			\thinsepline\\
 			\textbf{Parameters of Grid-Search:}\medskip\\
@@ -163,14 +163,14 @@
 					\item padding = 2;
 				\end{itemize} 
 				\item another max pooling layer with kernel size 2
-				\item \textit{A final layer}
+				\item \textit{A final linear layer}
 				\begin{itemize}
 					\item input\_size = 7$\times$7$\times$channels[1]
 					\item output\_size = 10
 				\end{itemize}
 			\end{itemize}
 			As input during the initialization, one must specify the \texttt{channels} array (of two integers).\medskip\\
-			For the Grid Search, different initial learning rates, regularization terms, channels arrays, dropout rates and activations were tried out, while the loss function was kept \texttt{nn.CrossEntropyLoss} and the optimizer was fixed \texttt{optim.Adam}
+			For the Grid Search, different initial learning rates, regularization terms, channels arrays, dropout rates and activations were tried out, while the loss function was kept \texttt{nn.CrossEntropyLoss} and the optimizer was fixed to \texttt{optim.Adam}
 			\thinsepline\\
 			\textbf{Best parameters}\medskip\\
 			\begin{tabular}{ll}
@@ -197,7 +197,7 @@
 			\end{figure}
 			From the confusion matrix above, it is clear that the implementation of the classificator is overall convincing, however it does not particularly well distinguish between the classes "T-shirt/top" and "Shirt". This kind of behaviour was although expected since those two classes are aesthetically close.
 			\subsubsection{Data augmentation}
-			Augmenting the training data mainly helps a convolutional neural network obtain rotation invariance and  overall generalize better.
+			Augmenting the training data mainly helps a convolutional neural network obtain rotational invariance and  overall generalize better.
 			Data augmentation was applied on the training set by applying the following transformations on the dataloader:\\
 			\begin{minted}[%
 				xleftmargin=-7cm, fontsize=\small
@@ -209,7 +209,7 @@
 				    transforms.RandomCrop(28,padding=2)])
 				
 			\end{minted}
-			Since having a larger training set required longer training time per epoch, it was opted not to perform a grid search and to stick with the most optimal parameters found with the model of the last section:
+			Since having a larger training set required a longer training time per epoch, it was opted not to perform a grid search and to stick with the most optimal parameters found with the model of the last section:
 			\thinnersepline\\
 			\textbf{Epochs:} 100\\
 			\textbf{Accuracy on Test set:} 87.69 \%\vspace*{-.2cm}\\
@@ -225,7 +225,7 @@
 			\textbf{Epochs:} 100 \\
 			\textbf{Accuracy on Test set:} 91.57 \%\vspace*{-.2cm}\\
 			\thinnersepline\\
-			As for the main Classificator, the main source of error comes from not accurately distinguish the class "T-shirt/top" from "Shirt", however implementing a ResNet50 does improve the accuracy almost up to 92\%
+			As for the main Classificator, the main source of error in this model comes from not accurately distinguish the class "T-shirt/top" from "Shirt", however implementing a ResNet50 does improve the accuracy almost up to 92\%.
 	
 	\onecolumn
 	\section{\textbf{Appendix}}

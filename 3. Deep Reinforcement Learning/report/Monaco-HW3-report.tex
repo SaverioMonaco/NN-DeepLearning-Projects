@@ -33,13 +33,13 @@
 \begin{document}
 	\maketitle
 	\begin{abstract} The final homework concerns Deep-Q Learning, an algorithm of Deep Reinforcement Learning based on \textit{Bellman equation} for decision processes.\\
-	Two environments of OpenAI Gym are tested with algorithm: "CartPole-v1" where a 2-dimensional platform must balance straight a pole, and a custom environment of the popular mobile game "FlappyBird".\\
-	For the latter, two different state-space encodings are probed: a smaller space that employs 2 distances variables, and a bigger encoding that contains the game visual output.
+	Two environments of OpenAI Gym are tested with the algorithm: "CartPole-v1" where a 2-dimensional platform must balance straight a pole, and a custom environment of the popular mobile game "FlappyBird".\\
+	For the latter, two different state-space encodings are probed: a smaller space that employs only 2 numerical variables, and a bigger encoding that contains the game visual output.
 	\end{abstract}
     \section*{\textbf{Deep-Q Learning}}
-    Deep-Q Learning algorithm belongs to the class of Deep Learning problems of Reinforcement Learning.
+    Deep-Q Learning is algorithm that belongs to the class of Deep Learning problems of Reinforcement Learning.
     In this branch of Deep Learning, an agent can interact with the surrounding environment (simulated or real). By the resulting states it is possible to give the agent a reward, namely a parameter that it tries to maximize.\\
-    The goal of this algorithm is to find an optimal \textit{policy}, namely a rule that outputs the action to make, given the state of the system. The way to determine the \textit{policy function} is not unique, Deep-Q Learning relies on \textit{Bellman equation} with the hypothesis that every instance is a Markov Process.\medskip\\
+    The goal of this algorithm is to find an optimal \textit{policy}, namely a rule that outputs the action to make, given the state of the system. The way to determine the \textit{policy function} is not unique, Deep-Q Learning relies on the \textit{Bellman equation} with the hypothesis that every instance is a Markov Process.\medskip\\
     For both environments, two optimizations are implemented to the vanilla algorithm:
     \begin{itemize}
 		\item \textit{Experience Replay:} The agent does not learn while it acts on the environment. It follows the last policy for an arbitrary number of episodes, then it updates its policy computing the loss, sampling from its past [state, action] pairs. This helps the convergence of the algorithm by having a more i.i.d-like data samples.
@@ -67,7 +67,7 @@
 		The Cart can only either move left or right, the action space is then 2 dimensional.\medskip\\
 		
 		
-		The Policy and Target network are simple linear Networks:
+		The Policy and Target networks are simple linear Networks:
 		\begin{itemize}
 			\item \textit{Input Layer}
 			\begin{itemize}
@@ -119,20 +119,20 @@
 			\multicolumn{2}{l}{Learned in 500 episodes}
 		\end{tabular}\\
 		\thinsepline\medskip\\
-		
+		During the training, the models spent a considerable portion of their initial episodes scoring very low values, having the agents no idea on what to do, but once the average score goes higher, they tended to score rapidly the maximum.
 	% explain deep q learning
 	\section{\textbf{FlappyBird}}
 		% explain game
-		Flappy Bird was a popular game for smartphone devices in the year 2014. The player must control the height of a bird by tapping on the screen, resulting in a flutter of its wing, while the bird's x-position is always fixed.\\ The game consists in avoiding incoming obstacle, namely vertical pipes that have a hole at a random height, in order to keep playing, the player must tap the screen accordingly to enter each pipe's hole, never touching the obstacles.
+		Flappy Bird was a popular game for smartphone devices in the year 2014. In this game, the player must control the height of a bird by tapping on the screen, resulting in a flutter of its wings, while the bird's x-position is always fixed.\\ The game consists in avoiding incoming obstacle, namely vertical pipes that have a hole at a random height, in order to keep playing, the player must tap the screen accordingly to enter each pipe's hole, never touching the obstacles. This requires high level of precision for being the gaps narrow.\vspace*{-.2cm}
 		\begin{figure}[h]
 			\centering
 			\includegraphics[width=0.35\linewidth]{../imgs/gameplay.jpeg}
 			\caption{Gameplay example of the game}
-		\end{figure}
+		\end{figure}\vspace*{-1cm}\\
 		\subsection{\textbf{FlappyBird-v0}}
 			\subsubsection{\textbf{Methods}}
 			% describe your model architectures and hyperparameters
-			The state space are the two parameters of this environment, namely:
+			In this environment, the state-space is 2-dimensional:
 			\begin{itemize}
 				\item horizontal distance to the next pipe:\\ range = [-$\infty$,+$\infty$]
 				\item difference between the player's y position and the next hole's y position:\\ range = [-$\infty$,+$\infty$]
@@ -148,7 +148,7 @@
 				\includegraphics[width=0.75\linewidth]{../imgs/github1}
 				\caption{State space of FlappyBird-v0 environment}
 			\end{figure}
-			Regarding the reward and punishes, the agent takes a point for every frame the game has not ended, and it gets a punishment proportionally to the vertical distance of the next hole. This punishment rule was mainly implemented to guide the agent for the first stages of learning, since without it would always fly way up (if the policy is mostly random, the actions are random and equiprobable aswell, however, fluttering the wings affects the y-position way more than doing nothing).\medskip\\
+			Regarding the reward and punishes, the agent takes a point for every frame the game has not ended, and it gets a punishment proportionally to the vertical distance of the next hole. This punishment rule was mainly implemented to guide the agent for the first stages of learning, since without it would always fly way up (infact, if the policy is mostly random, the actions are equiprobable, however, fluttering the wings increases the y-position way more than doing nothing can decrease it, resulting in a general increase of the height before even encountering any obstacle).\medskip
 		
 			For this environment, the very same Policy and Target Networks class used for \texttt{CartPole-v1} were adopted.
 			\thinsepline\\
@@ -163,7 +163,7 @@
 				Initial T:& [3, 6]\\
 			\end{tabular}\\
 			\thinsepline\\
-			The best model was chosen by letting the agent play 10 times at the end of its training and choose the model with the highest mean score.\\
+			The best model was chosen by letting the agent play 10 times at the end of its training and choose the one with the highest mean score.\\
 			\subsubsection{\textbf{Results}}\text{   }\\
 			%  present the simulation results
 			\thinsepline\\
@@ -178,7 +178,7 @@
 				
 			\end{tabular}\\
 			\thinsepline\medskip\\
-			The model seems to be applied successfully in this environment aswell, however, the agent still loses each game eventually when sharp turns must be performed taking into account not only the incoming pipe, but also the following one. However in this environment, the latter information is totally missing and a more extensive learning will not probably result in significative improvements of its executions. Nonetheless it has achieved a performance way above the average human player by usually surpassing the 70th-pipe.
+			The model seems to be applied successfully in this environment aswell, however, the agent still loses each game eventually, mostly when sharp turns must be performed taking into account not only the incoming obstacle, but also the following one. However in this environment, the latter information is totally missing and a more extensive learning will not probably result in significative improvements of its executions. Nonetheless it has achieved a performance way above the average human player by usually surpassing the 70th-pipe.
 		\subsection{\textbf{FlappyBird-rgb-v0}}
 			The very same task was performed with the visual game output as state space.\\ Ideally, this new type of observation space could surpass the lack of information exposed for the environment before.
 			
@@ -254,9 +254,9 @@
 			\thinsepline\medskip\\
 			Although the performances are significantly lower with respect to the 2-dimensional state-space encoding, this model is still able to occasionally avoid the first obstacles, meaning that it was able to learn something from the compressed images.\\
 			An extended hyperparameters search and longer training times would be without doubt beneficial to this model, however, the hyperparameters search was indentionally limited due to the exponentially longer training times with respect to the two previous environments treated.\medskip\\
-			The best models for \textit{CartPole} and \textit{FlappyBird} were saved using \texttt{torch.save()} function and it was written a script that loads the models as policy network and it is able to show how it plays:
+			The best models for \textit{CartPole} and \textit{FlappyBird} were saved using \texttt{torch.save()} function. Two scripts were written that load these models as policy network and they are able to show how they play:
 			\begin{itemize}
-				\item[-] \texttt{qcartpole.py} to see an attempt in the CartPole environment;
+				\item[-] \texttt{qcartpole.py} to see an attempt in the CartPole-v1 environment;
 				\item[-] \texttt{qflappy.py} to see the agent play a Flappy Bird game;
 			\end{itemize}
 			For the latter, the package \texttt{flappy-bird-gym} must be installed\cite{GHFB}:
