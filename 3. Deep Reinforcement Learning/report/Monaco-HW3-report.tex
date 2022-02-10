@@ -303,7 +303,7 @@
 			\includesvg[width=0.65\linewidth]{../imgs/default_view}\vspace*{-.7cm}
 			\caption{Original example of State space of FlappyBird-rgb-v0 environment}
 		\end{figure}\\
-		For curiosity, this encoding of the state space was tested, resulting in several seconds for every time the function \texttt{update\_step()} was called. Considering the large amount of time it would take to train the model enough epochs with this state space encoding, the process was killed and optimizations were considered.\medskip\\
+		For curiosity, this encoding of the state space was tested, resulting in several seconds for every time the function \texttt{update\_step()} was called. Considering the large amount of time it would take to train the model for enough epochs with this state space encoding, the process was killed and optimizations were considered.\medskip\\
 		
 		\subsubsection{Single channel image} The first obvious optimization is to choose a single channel from the whole RGB image, reducing the size of the state space by a factor of 3. Additionally, there are two main areas that contains no visual information, namely the bottom area where the ground is, and the area left to the agent, hence the screen was cropped removing them.\\ This reduced the size of the state space from 442,368 to 84,000.\vspace*{-1cm}\\
 		\begin{figure}[h]

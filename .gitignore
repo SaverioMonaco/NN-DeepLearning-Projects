@@ -136,6 +136,9 @@ FashionMNIST/
 svg-inkscape/
 _minted*/
 *.aux
+*.bcf
+*.xml
+*.tex
 *.glo
 *.idx
 *.log
