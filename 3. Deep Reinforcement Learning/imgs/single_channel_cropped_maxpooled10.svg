@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2022-02-09T22:16:40.831999</dc:date>
+    <dc:date>2022-02-10T10:11:10.276412</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -29,8 +29,8 @@ z
 " style="fill:none;"/>
   </g>
   <g id="axes_1">
-   <g clip-path="url(#p58c9f4f9cf)">
-    <image height="218" id="image26074a3bf5" transform="scale(1 -1)translate(0 -218)" width="115" x="164.322" xlink:href="data:image/png;base64,
+   <g clip-path="url(#pd036d23cf8)">
+    <image height="218" id="image10e3b9ca39" transform="scale(1 -1)translate(0 -218)" width="115" x="164.322" xlink:href="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAHMAAADaCAYAAACVUH3AAAADhklEQVR4nO3dsYriUBhA4WQRAtpbK4igr+JT+D6+gz6BnZ2FoIW1Uygoaik2VgraZIst7xUSHBn3zPnKnzuzgcPPhOw4SefzeZ4UNBgMglmn04mevVwuwWw6nUbPjkajopeAMB6Po/Msy4LZcrmMnp3NZsHsz0tXpY9iTBBjghgTpFLmcJ4XvlfSD3AzQYwJYkwQY4IYE6TU3Wyapu+6Dn0DNxPEmCDGBDEmiI/zQNxMEGOCGBPEmCDGBDEmiDFBjAliTBBjghgTxJggxgQxJogxQYwJYkwQY4IYE8SYIMYE8eMJIG4miDFBjAliTBBjglT6/X4w3G630cOxv52nn9FqtYKZmwliTBBjghgTpPLsZifm1Q/b+jjwn9gfCU6SJDkej8HsfD4X/r5uJogxQYwJYkwQY4JUFotF4cPdbjeY3W636NnD4RDMrtdr9GzskeJwOCx8XRT1ej2Ytdvt6NnVahXM3EwQY4IYE8SYIKV+Oy+mWq1G581mM5g9u1k6nU6vXsZ/pdfrveX7upkgxgQxJogxQdIyL0PVZ3MzQYwJYkwQY4IYE8SYIMYEMSaIMUGMCWJMEGOCGBPEmCDGBDEmiDFBjAliTBBjghgTxJggxgQxJogxQYwJYkwQY4IYE8SYIMYEMSaIMUGMCWJMEGOCGBPEmCDGBDEmiDFBjAliTBBjghgTxJggxgQxJogxQYwJYkwQY4IYE8SYIC+/C0zlTSaT6Px4PAaz2EtPkyRJNptNMHMzQYwJYkwQY4KUugGK/eB+9oLT2A/or6+v6NlarRbMfuPb4BuNRjB79qLYx+MRzNxMEGOCGBPEmCDGBHn5cV61Wo3Om81mMNvv99Gzv+3O9X6/R+dZlhX+HrvdLpi5mSDGBDEmiDFBSt0ArdfrYNbpdAp/fZ7nZf45leRmghgTxJggxgQxJogxQYwJYkwQY4IYE6TU4zwfx302NxPEmCDGBDEmiDFBjAliTBBjghgTxJggxgQxJogxQYwJYkwQY4IYE8SYIMYEMSaIMUFK/XZemqbvug59AzcTxJggxgQxJogfTwBxM0GMCWJMEGOCGBPEx3kgbiaIMUGMCWJMEGOCGBPEmCDGBDEmiDFB/M9pEDcTxJggxgQxJogxQYwJYkwQY4IYE8SYIMYEMSaIMUGMCWJMED+eAOJmghgTxJggxgQxJogxQYwJYkwQY4IYE+QvNsp8gC4tYl8AAAAASUVORK5CYII=" y="-34"/>
    </g>
    <g id="text_1">
@@ -289,7 +289,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p58c9f4f9cf">
+  <clipPath id="pd036d23cf8">
    <rect height="217.44" width="114.156" x="164.322" y="34.56"/>
   </clipPath>
  </defs>

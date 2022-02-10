@@ -33,19 +33,19 @@
 \begin{document}
 	\maketitle
 	\begin{abstract} The final homework concerns Deep-Q Learning, an algorithm of Deep Reinforcement Learning based on \textit{Bellman equation} for decision processes.\\
-	Two environments of OpenAI Gym are tested with the Deep-Q Learning algorithm: "CartPole-v1" where a 2-dimensional platform must balance straight a pole, and a custom environment of a popular mobile game "FlappyBird".\\
-	For the latter, two different state-space encodings are probed, a smaller state that employs 2 distances variables, and a bigger encoding that contains the game visual output.
+	Two environments of OpenAI Gym are tested with algorithm: "CartPole-v1" where a 2-dimensional platform must balance straight a pole, and a custom environment of the popular mobile game "FlappyBird".\\
+	For the latter, two different state-space encodings are probed: a smaller space that employs 2 distances variables, and a bigger encoding that contains the game visual output.
 	\end{abstract}
     \section*{\textbf{Deep-Q Learning}}
     Deep-Q Learning algorithm belongs to the class of Deep Learning problems of Reinforcement Learning.
-    In this branch of Deep Learning, an agent can interact with the surrounding environment (simulated or real). By the resulting state it is possible to give the agent a reward, namely a parameter that it tries to maximize.\\
-    The goal of this algorithm is to find an optimal \textit{policy}, namely a rule that tells what action to make, given the state of the system. The way to determine the \textit{policy function} is not unique, Deep-Q Learning relies on \textit{Bellman equation} with the hypothesis that every instance is a Markov Process.\medskip\\
+    In this branch of Deep Learning, an agent can interact with the surrounding environment (simulated or real). By the resulting states it is possible to give the agent a reward, namely a parameter that it tries to maximize.\\
+    The goal of this algorithm is to find an optimal \textit{policy}, namely a rule that outputs the action to make, given the state of the system. The way to determine the \textit{policy function} is not unique, Deep-Q Learning relies on \textit{Bellman equation} with the hypothesis that every instance is a Markov Process.\medskip\\
     For both environments, two optimizations are implemented to the vanilla algorithm:
     \begin{itemize}
-		\item \textit{Experience Replay:} The agent does not learn while it acts on the environment. It follows the last policy for an arbitrary number of episodes, then it updates its policy sampling from its past [state, action] pairs. This helps the convergence of the algorithm by having a more i.i.d like data samples.
+		\item \textit{Experience Replay:} The agent does not learn while it acts on the environment. It follows the last policy for an arbitrary number of episodes, then it updates its policy computing the loss, sampling from its past [state, action] pairs. This helps the convergence of the algorithm by having a more i.i.d-like data samples.
 		\item \textit{Target Network:} Two similar networks are implemented for a more stable update rule
 	\end{itemize}
-	A final note about Deep-Q Learning theory regards the \textit{Exploitation vs. Exploration} problem, namely wether to choose to follow the current policy to get the most reward, or to perform non-optimal actions according to the current policy in order for the agent to improve its knowledge about actions with more logn term benefits. For the training of all the following models, a parameter called "T" (temperature) was implemented, the higher T is, the more exploration is performed. This parameter is gradually decreased using an exponential rule.
+	A final note about Deep-Q Learning theory regards the \textit{Exploitation vs. Exploration} problem, namely wether to choose to follow the current policy to get the most reward, or to perform non-optimal actions according to the current policy in order for the agent to improve its knowledge about actions with more long term benefits. For the training of all the following models, a parameter called "T" (temperature) was implemented, the higher T is, the more exploration is performed. This parameter is gradually decreased during training using an exponential rule.
 	% explain deep q learning
 	\section{\textbf{CartPole-v1}}
 		% explain game
@@ -57,7 +57,7 @@
 		\end{figure}
 		\subsection{\textbf{Methods}}
 		% describe your model architectures and hyperparameters
-		For the CartPole environment the dimension of the observation space, namely the dimension of the state-vector that completely defines every state, is 4-dimensional\cite{GHCP}:
+		For the CartPole environment the dimension of the observation space (namely the size of the state-vector that completely defines every state) is 4-dimensional \cite{GHCP}:
 		\begin{itemize}
 			\item Cart x-position: range = [-4.8, +4.8]
 			\item Cart x-velocity: range = [-$\infty$,+$\infty$]
@@ -65,6 +65,7 @@
 			\item Pole Angular Velocity: range = [-$\infty$,+$\infty$]
 		\end{itemize}
 		The Cart can only either move left or right, the action space is then 2 dimensional.\medskip\\
+		
 		
 		The Policy and Target network are simple linear Networks:
 		\begin{itemize}
@@ -85,8 +86,10 @@
 			\end{itemize}
 		\end{itemize}
 		Between each layer, \texttt{nn.Tanh()} activation function was chosen.\medskip\\
-		The goal was to find an optimal model that required the least amount of episodes as possible to learn how to balance the pole. For this reason, during the training of each model, after every update of the weights, the network was tested on 10 games with 0 temperature, if it could balance the pole until the end (500 frames), the model was said
-		to have learned.\\
+		
+		The goal was to find an optimal model that required the least amount of episodes as possible to learn how to balance the pole. For this reason, during the training of each model, after every update of the weights, the current network was tested on 10 games with 0 temperature, if it could balance the pole until the end (500 frames) on all games, the model was said
+		to have learned.\medskip\\
+		
 		Various models were tested with different hyperparameters using Optuna, in the search of the model that could ace the 10 games with the least amount of learning as possible.
 		\thinsepline\\
 		\textbf{Parameters for Optuna Optimization:}\medskip\\
@@ -240,15 +243,31 @@
 			\thinsepline\\
 			\textbf{Best parameters:}\medskip\\
 			\begin{tabular}{ll}
-				Lr: & ??? \\
-				Optimizer: & ??? \\
-				Gamma: & ??? \\
-				Initial T:& ??? \\
+				Lr: & 0.0002 \\
+				Optimizer: & Adam \\
+				Gamma: & 0.973 \\
+				Initial T:& 5.108 \\
 				\hline\\
-				\multicolumn{2}{l}{Mean Score on Test Games: ??? }
+				\multicolumn{2}{l}{Mean Score on Test Games: 108.3 }
 				
 			\end{tabular}\\
 			\thinsepline\medskip\\
+			Although the performances are significantly lower with respect to the 2-dimensional state-space encoding, this model is still able to occasionally avoid the first obstacles, meaning that it was able to learn something from the compressed images.\\
+			An extended hyperparameters search and longer training times would be without doubt beneficial to this model, however, the hyperparameters search was indentionally limited due to the exponentially longer training times with respect to the two previous environments treated.\medskip\\
+			The best models for \textit{CartPole} and \textit{FlappyBird} were saved using \texttt{torch.save()} function and it was written a script that loads the models as policy network and it is able to show how it plays:
+			\begin{itemize}
+				\item[-] \texttt{qcartpole.py} to see an attempt in the CartPole environment;
+				\item[-] \texttt{qflappy.py} to see the agent play a Flappy Bird game;
+			\end{itemize}
+			For the latter, the package \texttt{flappy-bird-gym} must be installed\cite{GHFB}:
+			$$\text{\texttt{\$ pip install flappy-bird-gym}}$$
+			\newpage
+			Additionally, two videos were uploded on Youtube showing the average performance:
+			\begin{itemize}
+				\item \href{https://www.youtube.com/watch?v=LSkuY9bjZlo}{CartPole-v1 video}
+				\item \href{https://www.youtube.com/watch?v=QKapLxaR-3Q&t=14s}{FlappyBird-v0 video}
+			\end{itemize} 
+			
 			%  present the simulation results
 			\nocite{brockman2016openai}
 			\nocite{mnih2013playing}
@@ -271,7 +290,7 @@
 			\label{fig:fbv01opt}
 		\end{figure}
 	\begin{figure}[h]
-		\centering\includegraphics[width=1\linewidth]{../imgs/optuna_fbv0_2}\vspace*{-.7cm}
+		\centering\includegraphics[width=1\linewidth]{../imgs/optuna_fbv0_2}\vspace*{-.0cm}
 		\caption{Hyperparameter optimization of CartPoe-v1 environment in Optuna}
 		\label{fig:fbv02opt}
 	\end{figure}

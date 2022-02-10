@@ -12,7 +12,6 @@ from torch import nn
 import gym
 
 # Second set
-import flappy_bird_gym
 import time
 
 ####################
@@ -72,20 +71,20 @@ class DQN(nn.Module):
 # [INPUT]--|                | Parameter update            \___Loss
 #          |               \/                            /
 #          |---------> [Target Network (DQN)]------------
-class Flappy(nn.Module):
+class Cartpole(nn.Module):
     ''' 
     Handles all the networks, environments, and others
     '''
     def __init__(self):
         super().__init__()
         
-        tempenv = flappy_bird_gym.make("FlappyBird-v0")
+        tempenv = gym.make("CartPole-v1")
         self.state_space_dim = tempenv.observation_space.shape[0]
         
         self.action_space_dim = tempenv.action_space.n
         self.policy_net = DQN(self.state_space_dim, self.action_space_dim)
             
-        self.policy_net.load_state_dict(torch.load('./models/fb1'))
+        self.policy_net.load_state_dict(torch.load('./models/cartpole'))
         
     def choose_action_epsilon_greedy(self, state, epsilon):
         self.policy_net.eval()
@@ -105,7 +104,7 @@ class Flappy(nn.Module):
         return best_action, net_out.cpu().numpy()
     
     def play_a_game(self, show = True):
-        env = flappy_bird_gym.make("FlappyBird-v0")
+        env = gym.make("CartPole-v1")
         
         # Reset the environment and get the initial state
         state = env.reset()
@@ -124,8 +123,8 @@ class Flappy(nn.Module):
             # Visually render the environment
             if show:
                 env.render()
-                time.sleep(1 / 30)  # FPS
-                print(score)
+                #time.sleep(1 / 30)  # FPS
+                #print(score)
                 
             # Update the final score (+1 for each step)
             score += reward 
@@ -139,6 +138,6 @@ class Flappy(nn.Module):
         
         return score, state        
         
-player = Flappy()
+player = Cartpole()
 
 player.play_a_game()

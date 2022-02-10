@@ -107,6 +107,7 @@ class Flappy(nn.Module):
     def play_a_game(self, show = True):
         env = flappy_bird_gym.make("FlappyBird-v0")
         
+        
         # Reset the environment and get the initial state
         state = env.reset()
         
@@ -125,6 +126,8 @@ class Flappy(nn.Module):
             if show:
                 env.render()
                 time.sleep(1 / 30)  # FPS
+                if score == 0:
+                	time.sleep(5)
                 print(score)
                 
             # Update the final score (+1 for each step)
